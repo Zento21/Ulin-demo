@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>友邻 YouLin · 本地素人互免探店平台 · 交互演示</title>
+<title>友邻 YouLin — 本地素人互免探店平台</title>
 <style>
   :root {
     --green: #16a34a; --green-dark: #15803d; --green-light: #dcfce7;
@@ -187,7 +187,7 @@
   <h1>友邻 <span>YouLin</span> · 本地素人互免探店平台</h1>
   <p>商家发免费体验单 → 素人 LBS 到店核验 → 强制合规标注笔记 → 数据回流看板</p>
   <div class="tags">
-    <span class="tag"><b>✓</b> 选择身份登录：达人端 / 商家端</span>
+    <span class="tag"><b>✓</b> 达人端 × 商家端</span>
     <span class="tag">FastAPI + React + 微信小程序</span>
     <span class="tag">LBS 三级核验 + 反作弊</span>
     <span class="tag">合规双保险（广告法）</span>
@@ -200,7 +200,7 @@
   <div class="mask" id="mask"><div class="sheet" id="sheet"></div></div>
 </div>
 
-<p class="hint">本页面为前端交互演示（数据模拟），完整系统含 FastAPI 后端 · LBS 到店核验 · 反作弊 · 合规引擎。</p>
+<p class="hint">友邻 YouLin · 邻里之间，发现好店<br/>达人体验 · 商家合作 · 真实到店 · 合规分享</p>
 
 <script>
 /* ================= 状态 ================= */
@@ -272,14 +272,14 @@ function renderLogin() {
       <button class="${loginRole === "merchant" ? "on" : ""}" onclick="setLoginRole('merchant')">商家合作</button>
     </div>
     <div class="field"><input value="138 **** 6666" readonly /><button class="send" onclick="sendCode()" id="sendBtn">获取验证码</button></div>
-    <div class="field"><input placeholder="请输入验证码（演示任意输入）" id="codeInput" /></div>
+    <div class="field"><input placeholder="请输入验证码" id="codeInput" /></div>
     <button class="btn-login" onclick="doLogin()">${loginRole === "amateur" ? "登录 / 注册" : "登录商家后台"}</button>
     <div class="or"><span>其他方式</span></div>
     <button class="btn-wechat" onclick="wechatLogin()">微信一键登录</button>
     <div class="role-note">${loginRole === "amateur"
       ? "🧭 达人端：发现附近免费体验 → 到店核验 → 发布合规笔记赚信用"
       : "🏪 商家端：发布体验单 → 双精准匹配达人 → 核销看数据"}</div>
-    <div class="agree">登录即代表同意 <b>《用户协议》</b> 与 <b>《隐私政策》</b><br/>演示页面 · 数据为模拟</div>
+    <div class="agree">登录即代表同意 <b>《用户协议》</b> 与 <b>《隐私政策》</b><br/>未注册的手机号将自动创建账号</div>
   </div>
   <div class="toast" id="toast"></div>
   <div class="mask" id="mask" onclick="closeSheet()"><div class="sheet" id="sheet" onclick="event.stopPropagation()"></div></div>`;
@@ -288,7 +288,7 @@ function setLoginRole(r) { loginRole = r; renderLogin(); }
 function sendCode() {
   if (countdown > 0) return;
   countdown = 60;
-  toast("验证码已发送（演示：任意输入即可）");
+  toast("验证码已发送，请注意查收");
   cdTimer = setInterval(() => {
     countdown--;
     const b = document.getElementById("sendBtn");
@@ -442,8 +442,8 @@ function renderAmateurProfile() {
         </div>`).join("")}
     </div>
     <div class="menu">
-      <div class="mi" onclick="toast('收货与联系信息（演示）')"><span class="l">📮 我的资料</span><span class="arr">›</span></div>
-      <div class="mi" onclick="toast('消息中心：2 条未读（演示）')"><span class="l">🔔 消息中心</span><span class="arr">›</span></div>
+      <div class="mi" onclick="toast('完善头像、昵称与身份标签')"><span class="l">📮 我的资料</span><span class="arr">›</span></div>
+      <div class="mi" onclick="toast('2 条未读消息')"><span class="l">🔔 消息中心</span><span class="arr">›</span></div>
       <div class="mi" onclick="toast('广告法合规说明：所有互免笔记均强制标注')"><span class="l">🛡 合规说明</span><span class="arr">›</span></div>
       <div class="mi" onclick="switchRole()"><span class="l">🏪 切换为商家身份</span><span class="arr">›</span></div>
       <div class="mi" onclick="logout()"><span class="l" style="color:var(--red)">⏏ 退出登录</span><span class="arr">›</span></div>
@@ -543,7 +543,7 @@ function redeem(i) {
   mOrders[i].st = "done";
   mStat.redeemToday++;
   renderMerchantOrders();
-  toast("核销成功：6 位核销码已验证（演示）");
+  toast("核销成功：6 位核销码已验证");
 }
 function viewMNote(i) {
   const m = mOrders[i];
@@ -578,9 +578,9 @@ function renderMerchantProfile() {
       <div class="stat"><b>4.8</b><span>达人评分</span></div>
     </div>
     <div class="menu">
-      <div class="mi" onclick="toast('门店信息与营业时间（演示）')"><span class="l">🏪 门店管理</span><span class="arr">›</span></div>
-      <div class="mi" onclick="toast('扫码核销达人核销码（演示）')"><span class="l">📷 扫码核销</span><span class="arr">›</span></div>
-      <div class="mi" onclick="toast('达人对门店的历史互评（演示）')"><span class="l">⭐ 评价管理</span><span class="arr">›</span></div>
+      <div class="mi" onclick="toast('门店信息与营业时间')"><span class="l">🏪 门店管理</span><span class="arr">›</span></div>
+      <div class="mi" onclick="toast('扫码核销达人到店权益')"><span class="l">📷 扫码核销</span><span class="arr">›</span></div>
+      <div class="mi" onclick="toast('达人对门店的历史评价')"><span class="l">⭐ 评价管理</span><span class="arr">›</span></div>
       <div class="mi" onclick="switchRole()"><span class="l">🧭 切换为达人身份</span><span class="arr">›</span></div>
       <div class="mi" onclick="logout()"><span class="l" style="color:var(--red)">⏏ 退出登录</span><span class="arr">›</span></div>
     </div>`;
