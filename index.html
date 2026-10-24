@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>友邻 YouLin · 本地素人互免探店平台 · 交互演示</title>
+<style>
+  :root {
+    --green: #16a34a; --green-dark: #15803d; --green-light: #dcfce7;
+    --orange: #f97316; --orange-light: #ffedd5;
+    --bg: #f6f7f6; --text: #1f2937; --text2: #6b7280; --divider: #eceff1;
+    --blue: #3b82f6; --red: #ef4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(160deg, #eef2ee 0%, #e4ebe4 100%);
+    color: var(--text); min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; padding: 28px 16px 48px;
+  }
+  .intro { text-align: center; margin-bottom: 20px; }
+  .intro h1 { font-size: 20px; font-weight: 800; letter-spacing: .5px; }
+  .intro h1 span { color: var(--green); }
+  .intro p { font-size: 13px; color: var(--text2); margin-top: 6px; }
+  .intro .tags { margin-top: 10px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .intro .tag { font-size: 11px; padding: 4px 12px; border-radius: 999px; background: #fff; color: var(--text2); box-shadow: 0 1px 3px rgba(16,24,40,.06); }
+  .intro .tag b { color: var(--green); font-weight: 700; }
+
+  /* ---- 手机壳 ---- */
+  .phone {
+    width: 392px; max-width: 100%; height: 820px; background: var(--bg);
+    border-radius: 40px; border: 10px solid #111827; overflow: hidden;
+    display: flex; flex-direction: column; position: relative;
+    box-shadow: 0 30px 60px rgba(16,24,40,.25);
+  }
+  .appbar {
+    background: #fff; padding: 14px 16px 12px; display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 1px 0 rgba(16,24,40,.06); z-index: 5;
+  }
+  .logo {
+    width: 30px; height: 30px; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 800;
+    background: linear-gradient(135deg, #22c55e, var(--green)); display: flex; align-items: center; justify-content: center;
+  }
+  .appbar h2 { font-size: 18px; font-weight: 800; flex: 1; }
+  .appbar .bell { position: relative; width: 30px; height: 30px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .appbar .bell::before { content: "🔔"; font-size: 14px; }
+  .appbar .bell i {
+    position: absolute; top: -2px; right: -2px; width: 15px; height: 15px; border-radius: 50%;
+    background: var(--red); color: #fff; font-size: 9px; font-style: normal; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .appbar .uname { font-size: 12px; color: var(--text2); max-width: 72px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .page { flex: 1; overflow-y: auto; padding: 16px 14px 90px; }
+  .page::-webkit-scrollbar { display: none; }
+
+  /* ---- 底部 tab ---- */
+  .tabbar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 62px; background: #fff;
+    display: flex; box-shadow: 0 -1px 0 var(--divider); z-index: 5;
+  }
+  .tabbar button {
+    flex: 1; border: 0; background: none; font-size: 11px; color: #9ca3af; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: inherit; padding-top: 9px;
+  }
+  .tabbar button .ico { font-size: 20px; line-height: 1; filter: grayscale(1) opacity(.55); }
+  .tabbar button.on { color: var(--green); font-weight: 700; }
+  .tabbar button.on .ico { filter: none; }
+
+  .h { font-size: 19px; font-weight: 800; }
+  .sub { font-size: 12px; color: var(--text2); }
+
+  /* ---- 筛选 chips ---- */
+  .chips { display: flex; gap: 8px; overflow-x: auto; margin: 12px -14px 0; padding: 2px 14px 6px; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: 0 0 auto; font-size: 12px; color: var(--text2); background: #fff;
+    border: 1px solid #e5e7eb; border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  }
+  .chip.on { background: var(--green); border-color: var(--green); color: #fff; font-weight: 700; }
+  .chip.sep { flex-basis: 1px; border: 0; padding: 0; background: var(--divider); }
+
+  /* ---- 瀑布流 ---- */
+  .waterfall { column-count: 2; column-gap: 10px; margin-top: 12px; }
+  .card {
+    break-inside: avoid; background: #fff; border-radius: 14px; overflow: hidden; margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(16,24,40,.07); cursor: pointer; transition: transform .25s ease, opacity .25s ease;
+  }
+  .card.gone { transform: scale(.7); opacity: 0; }
+  .cover { position: relative; display: flex; align-items: center; justify-content: center; }
+  .cover .emoji { font-size: 42px; }
+  .badge-v {
+    position: absolute; top: 8px; left: 8px; background: rgba(249,115,22,.94); color: #fff;
+    font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 999px;
+  }
+  .badge-d {
+    position: absolute; bottom: 8px; right: 8px; background: rgba(255,255,255,.94); color: var(--green);
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+  }
+  .cbody { padding: 10px 12px 12px; }
+  .cname { font-size: 14px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cdesc { font-size: 11px; color: var(--text2); line-height: 1.5; height: 33px; overflow: hidden; margin-top: 3px; }
+  .metas { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .meta { font-size: 10px; color: var(--text2); border: 1px solid #e5e7eb; border-radius: 999px; padding: 2px 8px; }
+  .btn-accept {
+    margin-top: 10px; width: 100%; border: 0; cursor: pointer; color: #fff; font-family: inherit;
+    font-size: 13px; font-weight: 800; letter-spacing: 2px; padding: 9px 0; border-radius: 999px;
+    background: linear-gradient(135deg, #22c55e, var(--green));
+    box-shadow: 0 4px 10px rgba(22,163,74,.25); transition: filter .15s;
+  }
+  .btn-accept:active { filter: brightness(.95); transform: scale(.98); }
+
+  /* ---- 订单列表 ---- */
+  .ocards { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .ocard { background: #fff; border-radius: 14px; padding: 14px; box-shadow: 0 1px 3px rgba(16,24,40,.06); }
+  .otop { display: flex; justify-content: space-between; align-items: center; }
+  .oname { font-size: 15px; font-weight: 700; }
+  .ost { font-size: 11px; padding: 3px 10px; border-radius: 999px; font-weight: 700; }
+  .st-accepted { color: var(--blue); background: #dbeafe; }
+  .st-checked { color: var(--green); background: var(--green-light); }
+  .st-note { color: var(--orange); background: var(--orange-light); }
+  .st-done { color: #fff; background: var(--green); }
+  .odesc { font-size: 12px; color: var(--text2); margin-top: 5px; }
+  .obottom { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+  .oval { color: var(--orange); font-weight: 800; font-size: 13px; background: var(--orange-light); border-radius: 999px; padding: 3px 10px; }
+  .btn-act {
+    border: 0; cursor: pointer; font-family: inherit; color: #fff; font-size: 12px; font-weight: 700;
+    padding: 8px 16px; border-radius: 999px; background: linear-gradient(135deg, #22c55e, var(--green));
+  }
+  .btn-act.ghost { color: var(--green); background: #fff; border: 1px solid var(--green); }
+  .btn-act[disabled] { opacity: .6; }
+
+  /* ---- 我的 ---- */
+  .profile { background: #fff; border-radius: 18px; padding: 20px; text-align: center; box-shadow: 0 1px 3px rgba(16,24,40,.06); margin-top: 14px; }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 10px; background: linear-gradient(135deg, #fbbf24, var(--orange)); color: #fff; font-size: 26px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .ring { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; background: var(--green-light); color: var(--green-dark); font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 999px; }
+  .stats { display: flex; margin-top: 16px; background: #fff; border-radius: 18px; padding: 14px 0; box-shadow: 0 1px 3px rgba(16,24,40,.06); }
+  .stat { flex: 1; text-align: center; }
+  .stat b { font-size: 18px; display: block; }
+  .stat span { font-size: 11px; color: var(--text2); }
+  .stat + .stat { border-left: 1px solid var(--divider); }
+
+  /* ---- 商家看板 ---- */
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .metric { background: #fff; border-radius: 14px; padding: 14px; box-shadow: 0 1px 3px rgba(16,24,40,.06); }
+  .metric b { font-size: 22px; }
+  .metric span { font-size: 11px; color: var(--text2); display: block; margin-top: 2px; }
+  .metric em { font-style: normal; font-size: 10px; color: var(--green); font-weight: 700; }
+  .chart { background: #fff; border-radius: 14px; padding: 14px; margin-top: 10px; box-shadow: 0 1px 3px rgba(16,24,40,.06); }
+  .bars { display: flex; align-items: flex-end; gap: 8px; height: 90px; margin-top: 10px; }
+  .bar { flex: 1; border-radius: 6px 6px 2px 2px; background: linear-gradient(180deg, #22c55e, var(--green)); position: relative; }
+  .bar span { position: absolute; bottom: -18px; left: 0; right: 0; text-align: center; font-size: 9px; color: var(--text2); }
+
+  /* ---- toast ---- */
+  .toast {
+    position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%) translateY(10px);
+    background: rgba(17,24,39,.92); color: #fff; font-size: 13px; padding: 10px 18px;
+    border-radius: 999px; opacity: 0; transition: all .25s ease; pointer-events: none; z-index: 20; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .hint { margin-top: 18px; font-size: 12px; color: var(--text2); text-align: center; line-height: 1.8; }
+  .hint a { color: var(--green); font-weight: 700; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <h1>友邻 <span>YouLin</span> · 本地素人互免探店平台</h1>
+  <p>商家发免费体验单 → 素人 LBS 到店核验 → 强制合规标注笔记 → 数据回流看板</p>
+  <div class="tags">
+    <span class="tag"><b>✓</b> 交互演示（模拟数据）</span>
+    <span class="tag">FastAPI + React + 微信小程序</span>
+    <span class="tag">LBS 三级核验 + 反作弊</span>
+    <span class="tag">合规双保险（广告法）</span>
+  </div>
+</div>
+
+<div class="phone">
+  <div class="appbar">
+    <div class="logo">友</div>
+    <h2 id="barTitle">友邻</h2>
+    <div class="bell" onclick="toast('2 条新消息：接单成功 · 核验通过')"><i>2</i></div>
+    <div class="uname">阿布</div>
+  </div>
+
+  <div class="page" id="page"></div>
+
+  <div class="tabbar" id="tabbar">
+    <button class="on" data-p="discover"><span class="ico">🧭</span>发现</button>
+    <button data-p="orders"><span class="ico">🧾</span>订单</button>
+    <button data-p="profile"><span class="ico">👤</span>我的</button>
+    <button data-p="merchant"><span class="ico">🏪</span>商家</button>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<p class="hint">
+  本页面为前端交互演示（数据模拟），完整系统含 FastAPI 后端 · LBS 到店核验 · 反作弊 · 合规引擎 · 商家看板。<br/>
+  源码为私有项目，可通过简历附带的演示链接体验。
+</p>
+
+<script>
+/* ---------- 数据 ---------- */
+const GRADS = [
+  "linear-gradient(135deg,#d1fae5,#a7f3d0)", "linear-gradient(135deg,#fef3c7,#fde68a)",
+  "linear-gradient(135deg,#dbeafe,#bfdbfe)", "linear-gradient(135deg,#fce7f3,#fbcfe8)",
+  "linear-gradient(135deg,#ede9fe,#ddd6fe)", "linear-gradient(135deg,#ffedd5,#fed7aa)",
+];
+const ORDERS = [
+  { id: 1, name: "半糖时光 · 奶茶", emoji: "🧋", desc: "免费招牌奶茶一杯，好喝推荐 环境不错适合拍照", val: 28, dist: "120m", layer: "南大仙林", grad: 0 },
+  { id: 2, name: "老王烧烤 · 撸串", emoji: "🍖", desc: "双人烤串体验装：烤串 12 串 + 凉菜一份 + 酸梅汤", val: 88, dist: "480m", layer: "和园", grad: 1 },
+  { id: 3, name: "山野咖啡", emoji: "☕", desc: "手冲咖啡免费体验，豆单三选一 附赠挂耳包", val: 45, dist: "860m", layer: "南大仙林", grad: 2 },
+  { id: 4, name: "巷口面馆", emoji: "🍜", desc: "招牌皮肚面免费吃一碗，量大管饱 老店十年", val: 22, dist: "1.2km", layer: "和园", grad: 3 },
+  { id: 5, name: "甜野烘焙", emoji: "🍰", desc: "新品草莓慕斯免费试吃，出炉时间 14:00-17:00", val: 38, dist: "1.5km", layer: "南大仙林", grad: 4 },
+  { id: 6, name: "川香冒菜", emoji: "🍲", desc: "单人冒菜套餐免费体验，微辣中辣自选", val: 32, dist: "2.1km", layer: "和园", grad: 5 },
+];
+const LAYER_NOTE = "南大仙林";
+let mine = [];           // {order, st: accepted|checked|note|done}
+let doneCount = 0, noteCount = 0;
+const RADIUS = ["1km","3km","5km","10km"];
+let radiusOn = "5km";
+
+/* ---------- 工具 ---------- */
+const $page = document.getElementById("page");
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2200);
+}
+function chip(label, on, fn) {
+  return `<span class="chip ${on ? "on" : ""}" onclick="${fn}">${label}</span>`;
+}
+function metaChip(l) {
+  const map = { "南大仙林": "🎓 南大仙林", "和园": "🏡 和园" };
+  return `<span class="meta">${map[l] || l}</span>`;
+}
+
+/* ---------- 发现 ---------- */
+function renderDiscover() {
+  $page.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:baseline;">
+      <div class="h">附近免费体验</div><div class="sub">${ORDERS.length} 个可领</div>
+    </div>
+    <div class="chips">
+      ${RADIUS.map(r => chip(r, r === radiusOn, `setRadius('${r}')`)).join("")}
+      <span class="chip sep"></span>
+      ${chip("全部圈层", true, "")}
+    </div>
+    <div class="waterfall" id="wf"></div>`;
+  renderWaterfall();
+}
+function setRadius(r) { radiusOn = r; toast(`已切换到 ${r} 范围`); renderDiscover(); }
+function renderWaterfall() {
+  document.getElementById("wf").innerHTML = ORDERS.map((o, i) => `
+    <div class="card" id="card-${o.id}">
+      <div class="cover" style="height:${120 + (i % 3) * 24}px;background:${o.grad != null ? GRADS[o.grad] : GRADS[0]}">
+        <span class="emoji">${o.emoji}</span>
+        <span class="badge-v">免单 ¥${o.val}</span>
+        <span class="badge-d">📍 ${o.dist}</span>
+      </div>
+      <div class="cbody">
+        <div class="cname">${o.name}</div>
+        <div class="cdesc">${o.desc}</div>
+        <div class="metas">${metaChip(o.layer)}<span class="meta">🕐 今日 10:00-20:00</span></div>
+        <button class="btn-accept" onclick="accept(event,${o.id})">免费领取</button>
+      </div>
+    </div>`).join("");
+}
+let current = "discover";
+function accept(e, id) {
+  e.stopPropagation();
+  const idx = ORDERS.findIndex(o => o.id === id);
+  const [o] = ORDERS.splice(idx, 1);
+  mine.unshift({ o, st: "accepted" });
+  const el = document.getElementById("card-" + id);
+  if (el) { el.classList.add("gone"); setTimeout(() => { if (current === "discover") renderDiscover(); }, 260); }
+  toast("领取成功！记得按时到店核验");
+}
+
+/* ---------- 订单 ---------- */
+const ST_TEXT = { accepted: ["已接单", "st-accepted"], checked: ["已到店核验", "st-checked"], note: ["笔记已交付", "st-note"], done: ["已完成", "st-done"] };
+function renderOrders() {
+  const body = mine.length ? `
+    <div class="ocards">${mine.map((m, i) => {
+      const [txt, cls] = ST_TEXT[m.st];
+      let act = "";
+      if (m.st === "accepted") act = `<button class="btn-act" id="act-${i}" onclick="checkin(${i})">📍 到店核验</button>`;
+      if (m.st === "checked") act = `<button class="btn-act" onclick="publish(${i})">✍️ 写笔记</button>`;
+      if (m.st === "note") act = `<button class="btn-act ghost" onclick="toast('等待对方互评后完成')">⏳ 互评中</button>`;
+      if (m.st === "done") act = `<span class="sub">✅ 已互评完成</span>`;
+      return `
+        <div class="ocard">
+          <div class="otop"><span class="oname">${m.o.emoji} ${m.o.name}</span><span class="ost ${cls}">${txt}</span></div>
+          <div class="odesc">${m.o.desc}</div>
+          <div class="obottom"><span class="oval">¥${m.o.val}</span>${act}</div>
+        </div>`;
+    }).join("")}</div>`
+    : `<div style="text-align:center;padding:120px 0;color:var(--text2)">
+         <div style="font-size:44px">🧾</div><p style="margin-top:10px">还没有订单<br/>去「发现」领取免费体验单</p></div>`;
+  $page.innerHTML = `<div class="h">我的订单</div>${body}`;
+}
+function checkin(i) {
+  const btn = document.getElementById("act-" + i);
+  btn.disabled = true; btn.textContent = "定位核验中…";
+  setTimeout(() => {
+    mine[i].st = "checked"; doneCount++;
+    renderOrders();
+    toast("LBS 核验通过：距门店 87m（Tier0 强通过）");
+  }, 1200);
+}
+function publish(i) {
+  mine[i].st = "note"; noteCount++;
+  renderOrders();
+  toast('笔记已发布，自动标注「广告·免费体验」');
+}
+
+/* ---------- 我的 ---------- */
+function renderProfile() {
+  $page.innerHTML = `
+    <div class="h" style="margin-top:2px">我的</div>
+    <div class="profile">
+      <div class="avatar">阿</div>
+      <div style="font-weight:800;font-size:17px">阿布 <span class="sub">UL3F8KQ2M1</span></div>
+      <div class="sub" style="margin-top:4px">认证素人 · 🎓 南大仙林</div>
+      <div class="ring">🛡 信用分 98 · 金牌</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>${doneCount}</b><span>完成探店</span></div>
+      <div class="stat"><b>${noteCount}</b><span>合规笔记</span></div>
+      <div class="stat"><b>4.9</b><span>邻里评分</span></div>
+      <div class="stat"><b>12</b><span>信用足迹</span></div>
+    </div>
+    <div class="profile" style="text-align:left;padding:16px">
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px">🔐 平台保障</div>
+      <div class="sub" style="line-height:1.9">· LBS 三级到店核验（Tier0/1/2）+ 设备指纹反作弊<br/>· 笔记强制「广告·免费体验」标注（后端不可篡改）<br/>· 双向互评 + 信用分体系，违约留档</div>
+    </div>`;
+}
+
+/* ---------- 商家 ---------- */
+function renderMerchant() {
+  const bars = [3, 5, 4, 7, 6, 9, 8];
+  $page.innerHTML = `
+    <div class="h">商家看板 <span class="sub">冒烟奶茶店</span></div>
+    <div class="metrics">
+      <div class="metric"><b>42</b><span>累计发单</span><em>本周 +8</em></div>
+      <div class="metric"><b>31</b><span>到店核销</span><em>核销率 74%</em></div>
+      <div class="metric"><b>27</b><span>合规笔记交付</span><em>交付率 87%</em></div>
+      <div class="metric"><b>156</b><span>双精准候选命中</span><em>匹配精度 92%</em></div>
+    </div>
+    <div class="chart">
+      <div style="font-weight:700;font-size:13px">近 7 日发单量</div>
+      <div class="bars">${bars.map((b, i) => `<div class="bar" style="height:${b * 10}px"><span>周${"一二三四五六日"[i]}</span></div>`).join("")}</div>
+      <div style="height:18px"></div>
+    </div>
+    <div class="chart">
+      <div style="font-weight:700;font-size:13px">运营亮点</div>
+      <div class="sub" style="margin-top:8px;line-height:1.9">
+        · 笔记回流曝光 <b style="color:var(--orange)">12,400+</b>，进店转化 <b style="color:var(--green)">↑18%</b><br/>
+        · 低质订单自动出清 + 异常发单密度检测已开启<br/>
+        · 每日发单上限 5 单（平台风控）
+      </div>
+    </div>`;
+}
+
+/* ---------- 路由 ---------- */
+const TITLES = { discover: "友邻", orders: "我的订单", profile: "我的", merchant: "商家工作台" };
+const RENDER = { discover: renderDiscover, orders: renderOrders, profile: renderProfile, merchant: renderMerchant };
+function go(p, btn) {
+  current = p;
+  document.querySelectorAll(".tabbar button").forEach(b => b.classList.remove("on"));
+  btn.classList.add("on");
+  document.getElementById("barTitle").textContent = TITLES[p];
+  RENDER[p]();
+}
+document.querySelectorAll(".tabbar button").forEach(b =>
+  b.addEventListener("click", () => go(b.dataset.p, b))
+);
+renderDiscover();
+</script>
+</body>
+</html>
