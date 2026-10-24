@@ -26,43 +26,25 @@
   .intro .tag { font-size: 11px; padding: 4px 12px; border-radius: 999px; background: #fff; color: var(--text2); box-shadow: 0 1px 3px rgba(16,24,40,.06); }
   .intro .tag b { color: var(--green); font-weight: 700; }
 
-  /* ---- 手机壳 ---- */
   .phone {
-    width: 392px; max-width: 100%; height: 820px; background: var(--bg);
+    width: 392px; max-width: 100%; height: 830px; background: var(--bg);
     border-radius: 40px; border: 10px solid #111827; overflow: hidden;
     display: flex; flex-direction: column; position: relative;
     box-shadow: 0 30px 60px rgba(16,24,40,.25);
   }
-  .appbar {
-    background: #fff; padding: 14px 16px 12px; display: flex; align-items: center; gap: 10px;
-    box-shadow: 0 1px 0 rgba(16,24,40,.06); z-index: 5;
-  }
-  .logo {
-    width: 30px; height: 30px; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 800;
-    background: linear-gradient(135deg, #22c55e, var(--green)); display: flex; align-items: center; justify-content: center;
-  }
+  .appbar { background: #fff; padding: 14px 16px 12px; display: flex; align-items: center; gap: 10px; box-shadow: 0 1px 0 rgba(16,24,40,.06); z-index: 5; }
+  .logo { width: 30px; height: 30px; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 800; background: linear-gradient(135deg, #22c55e, var(--green)); display: flex; align-items: center; justify-content: center; }
   .appbar h2 { font-size: 18px; font-weight: 800; flex: 1; }
-  .appbar .bell { position: relative; width: 30px; height: 30px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; cursor: pointer; }
-  .appbar .bell::before { content: "🔔"; font-size: 14px; }
-  .appbar .bell i {
-    position: absolute; top: -2px; right: -2px; width: 15px; height: 15px; border-radius: 50%;
-    background: var(--red); color: #fff; font-size: 9px; font-style: normal; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .appbar .uname { font-size: 12px; color: var(--text2); max-width: 72px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bell { position: relative; width: 30px; height: 30px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .bell::before { content: "🔔"; font-size: 14px; }
+  .bell i { position: absolute; top: -2px; right: -2px; width: 15px; height: 15px; border-radius: 50%; background: var(--red); color: #fff; font-size: 9px; font-style: normal; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .uname { font-size: 12px; color: var(--text2); max-width: 72px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   .page { flex: 1; overflow-y: auto; padding: 16px 14px 90px; }
   .page::-webkit-scrollbar { display: none; }
 
-  /* ---- 底部 tab ---- */
-  .tabbar {
-    position: absolute; bottom: 0; left: 0; right: 0; height: 62px; background: #fff;
-    display: flex; box-shadow: 0 -1px 0 var(--divider); z-index: 5;
-  }
-  .tabbar button {
-    flex: 1; border: 0; background: none; font-size: 11px; color: #9ca3af; cursor: pointer;
-    display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: inherit; padding-top: 9px;
-  }
+  .tabbar { position: absolute; bottom: 0; left: 0; right: 0; height: 62px; background: #fff; display: flex; box-shadow: 0 -1px 0 var(--divider); z-index: 5; }
+  .tabbar button { flex: 1; border: 0; background: none; font-size: 11px; color: #9ca3af; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: inherit; padding-top: 9px; }
   .tabbar button .ico { font-size: 20px; line-height: 1; filter: grayscale(1) opacity(.55); }
   .tabbar button.on { color: var(--green); font-weight: 700; }
   .tabbar button.on .ico { filter: none; }
@@ -70,47 +52,50 @@
   .h { font-size: 19px; font-weight: 800; }
   .sub { font-size: 12px; color: var(--text2); }
 
-  /* ---- 筛选 chips ---- */
+  /* ---- 登录页 ---- */
+  .login { flex: 1; overflow-y: auto; padding: 64px 30px 30px; background: #fff; }
+  .login .hero { text-align: center; margin-bottom: 36px; }
+  .login .hero .biglogo { width: 84px; height: 84px; margin: 0 auto 14px; border-radius: 26px; background: linear-gradient(135deg, #22c55e, var(--green)); color: #fff; font-size: 42px; font-weight: 800; line-height: 84px; box-shadow: 0 10px 26px rgba(22,163,74,.28); }
+  .login .hero h3 { font-size: 24px; font-weight: 800; letter-spacing: 2px; }
+  .login .hero p { font-size: 12px; color: var(--text2); margin-top: 8px; }
+  .seg { display: flex; background: var(--bg); border-radius: 999px; padding: 4px; margin-bottom: 20px; }
+  .seg button { flex: 1; border: 0; background: none; font-family: inherit; font-size: 14px; color: var(--text2); padding: 10px 0; border-radius: 999px; cursor: pointer; font-weight: 600; }
+  .seg button.on { background: #fff; color: var(--green); font-weight: 800; box-shadow: 0 1px 4px rgba(16,24,40,.1); }
+  .field { display: flex; align-items: center; border: 1px solid #e5e7eb; border-radius: 14px; padding: 0 14px; margin-bottom: 14px; height: 50px; }
+  .field input { flex: 1; border: 0; outline: 0; font-size: 15px; font-family: inherit; }
+  .field .send { border: 0; background: none; color: var(--green); font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .field .send[disabled] { color: #c0c4cc; }
+  .btn-login { width: 100%; height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 16px; font-weight: 800; letter-spacing: 4px; cursor: pointer; font-family: inherit; background: linear-gradient(135deg, #22c55e, var(--green)); box-shadow: 0 8px 20px rgba(22,163,74,.28); }
+  .login .or { display: flex; align-items: center; gap: 14px; margin: 24px 0; }
+  .login .or::before, .login .or::after { content: ""; flex: 1; height: 1px; background: var(--divider); }
+  .login .or span { font-size: 11px; color: #c0c4cc; }
+  .btn-wechat { width: 100%; height: 48px; border: 1px solid var(--green); border-radius: 999px; color: var(--green); font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; background: var(--green-light); }
+  .agree { text-align: center; font-size: 11px; color: #c0c4cc; margin-top: 22px; line-height: 1.8; }
+  .agree b { color: var(--text2); font-weight: 400; }
+  .role-note { margin-top: 18px; text-align: center; font-size: 11px; color: var(--green); background: var(--green-light); border-radius: 10px; padding: 8px 10px; }
+
+  /* ---- 筛选 chips / 瀑布流 ---- */
   .chips { display: flex; gap: 8px; overflow-x: auto; margin: 12px -14px 0; padding: 2px 14px 6px; }
   .chips::-webkit-scrollbar { display: none; }
-  .chip {
-    flex: 0 0 auto; font-size: 12px; color: var(--text2); background: #fff;
-    border: 1px solid #e5e7eb; border-radius: 999px; padding: 6px 14px; cursor: pointer;
-  }
+  .chip { flex: 0 0 auto; font-size: 12px; color: var(--text2); background: #fff; border: 1px solid #e5e7eb; border-radius: 999px; padding: 6px 14px; cursor: pointer; }
   .chip.on { background: var(--green); border-color: var(--green); color: #fff; font-weight: 700; }
   .chip.sep { flex-basis: 1px; border: 0; padding: 0; background: var(--divider); }
-
-  /* ---- 瀑布流 ---- */
   .waterfall { column-count: 2; column-gap: 10px; margin-top: 12px; }
-  .card {
-    break-inside: avoid; background: #fff; border-radius: 14px; overflow: hidden; margin-bottom: 10px;
-    box-shadow: 0 1px 3px rgba(16,24,40,.07); cursor: pointer; transition: transform .25s ease, opacity .25s ease;
-  }
+  .card { break-inside: avoid; background: #fff; border-radius: 14px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(16,24,40,.07); cursor: pointer; transition: transform .25s ease, opacity .25s ease; }
   .card.gone { transform: scale(.7); opacity: 0; }
   .cover { position: relative; display: flex; align-items: center; justify-content: center; }
   .cover .emoji { font-size: 42px; }
-  .badge-v {
-    position: absolute; top: 8px; left: 8px; background: rgba(249,115,22,.94); color: #fff;
-    font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 999px;
-  }
-  .badge-d {
-    position: absolute; bottom: 8px; right: 8px; background: rgba(255,255,255,.94); color: var(--green);
-    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
-  }
+  .badge-v { position: absolute; top: 8px; left: 8px; background: rgba(249,115,22,.94); color: #fff; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 999px; }
+  .badge-d { position: absolute; bottom: 8px; right: 8px; background: rgba(255,255,255,.94); color: var(--green); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
   .cbody { padding: 10px 12px 12px; }
   .cname { font-size: 14px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .cdesc { font-size: 11px; color: var(--text2); line-height: 1.5; height: 33px; overflow: hidden; margin-top: 3px; }
   .metas { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
   .meta { font-size: 10px; color: var(--text2); border: 1px solid #e5e7eb; border-radius: 999px; padding: 2px 8px; }
-  .btn-accept {
-    margin-top: 10px; width: 100%; border: 0; cursor: pointer; color: #fff; font-family: inherit;
-    font-size: 13px; font-weight: 800; letter-spacing: 2px; padding: 9px 0; border-radius: 999px;
-    background: linear-gradient(135deg, #22c55e, var(--green));
-    box-shadow: 0 4px 10px rgba(22,163,74,.25); transition: filter .15s;
-  }
+  .btn-accept { margin-top: 10px; width: 100%; border: 0; cursor: pointer; color: #fff; font-family: inherit; font-size: 13px; font-weight: 800; letter-spacing: 2px; padding: 9px 0; border-radius: 999px; background: linear-gradient(135deg, #22c55e, var(--green)); box-shadow: 0 4px 10px rgba(22,163,74,.25); }
   .btn-accept:active { filter: brightness(.95); transform: scale(.98); }
 
-  /* ---- 订单列表 ---- */
+  /* ---- 订单 ---- */
   .ocards { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
   .ocard { background: #fff; border-radius: 14px; padding: 14px; box-shadow: 0 1px 3px rgba(16,24,40,.06); }
   .otop { display: flex; justify-content: space-between; align-items: center; }
@@ -120,47 +105,80 @@
   .st-checked { color: var(--green); background: var(--green-light); }
   .st-note { color: var(--orange); background: var(--orange-light); }
   .st-done { color: #fff; background: var(--green); }
+  .st-redeem { color: var(--orange); background: var(--orange-light); }
   .odesc { font-size: 12px; color: var(--text2); margin-top: 5px; }
   .obottom { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
   .oval { color: var(--orange); font-weight: 800; font-size: 13px; background: var(--orange-light); border-radius: 999px; padding: 3px 10px; }
-  .btn-act {
-    border: 0; cursor: pointer; font-family: inherit; color: #fff; font-size: 12px; font-weight: 700;
-    padding: 8px 16px; border-radius: 999px; background: linear-gradient(135deg, #22c55e, var(--green));
-  }
+  .btn-act { border: 0; cursor: pointer; font-family: inherit; color: #fff; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 999px; background: linear-gradient(135deg, #22c55e, var(--green)); }
   .btn-act.ghost { color: var(--green); background: #fff; border: 1px solid var(--green); }
   .btn-act[disabled] { opacity: .6; }
+  .who { font-size: 11px; color: var(--text2); margin-top: 6px; }
+  .who b { color: var(--text); font-weight: 600; }
 
-  /* ---- 我的 ---- */
+  /* ---- 我的（达人） ---- */
   .profile { background: #fff; border-radius: 18px; padding: 20px; text-align: center; box-shadow: 0 1px 3px rgba(16,24,40,.06); margin-top: 14px; }
   .avatar { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 10px; background: linear-gradient(135deg, #fbbf24, var(--orange)); color: #fff; font-size: 26px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
   .ring { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; background: var(--green-light); color: var(--green-dark); font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 999px; }
-  .stats { display: flex; margin-top: 16px; background: #fff; border-radius: 18px; padding: 14px 0; box-shadow: 0 1px 3px rgba(16,24,40,.06); }
+  .stats { display: flex; margin-top: 14px; background: #fff; border-radius: 18px; padding: 14px 0; box-shadow: 0 1px 3px rgba(16,24,40,.06); }
   .stat { flex: 1; text-align: center; }
   .stat b { font-size: 18px; display: block; }
   .stat span { font-size: 11px; color: var(--text2); }
   .stat + .stat { border-left: 1px solid var(--divider); }
+  .notes { background: #fff; border-radius: 18px; padding: 16px; box-shadow: 0 1px 3px rgba(16,24,40,.06); margin-top: 14px; }
+  .notes .nt { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+  .note { border: 1px solid var(--divider); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; cursor: pointer; }
+  .note .nrow { display: flex; justify-content: space-between; align-items: center; }
+  .note .nname { font-size: 13px; font-weight: 600; }
+  .comp { font-size: 10px; color: var(--red); border: 1px solid #fecaca; background: #fef2f2; border-radius: 6px; padding: 1px 6px; font-weight: 700; }
+  .note .nsub { font-size: 11px; color: var(--text2); margin-top: 4px; }
+  .menu { background: #fff; border-radius: 18px; margin-top: 14px; box-shadow: 0 1px 3px rgba(16,24,40,.06); overflow: hidden; }
+  .mi { display: flex; align-items: center; justify-content: space-between; padding: 15px 16px; font-size: 14px; cursor: pointer; border-bottom: 1px solid #f6f7f6; }
+  .mi:last-child { border-bottom: 0; }
+  .mi .l { display: flex; align-items: center; gap: 10px; }
+  .mi .arr { color: #c0c4cc; }
 
-  /* ---- 商家看板 ---- */
-  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  /* ---- 工作台（商家） ---- */
+  .hi { margin-top: 2px; }
+  .hi .h + .sub { margin-top: 4px; }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
   .metric { background: #fff; border-radius: 14px; padding: 14px; box-shadow: 0 1px 3px rgba(16,24,40,.06); }
   .metric b { font-size: 22px; }
   .metric span { font-size: 11px; color: var(--text2); display: block; margin-top: 2px; }
   .metric em { font-style: normal; font-size: 10px; color: var(--green); font-weight: 700; }
   .chart { background: #fff; border-radius: 14px; padding: 14px; margin-top: 10px; box-shadow: 0 1px 3px rgba(16,24,40,.06); }
-  .bars { display: flex; align-items: flex-end; gap: 8px; height: 90px; margin-top: 10px; }
+  .chart .ct { font-weight: 700; font-size: 13px; }
+  .bars { display: flex; align-items: flex-end; gap: 8px; height: 80px; margin-top: 12px; }
   .bar { flex: 1; border-radius: 6px 6px 2px 2px; background: linear-gradient(180deg, #22c55e, var(--green)); position: relative; }
-  .bar span { position: absolute; bottom: -18px; left: 0; right: 0; text-align: center; font-size: 9px; color: var(--text2); }
+  .bar span { position: absolute; bottom: -16px; left: 0; right: 0; text-align: center; font-size: 9px; color: var(--text2); }
+  .pubcard { margin-top: 14px; background: linear-gradient(135deg, #22c55e, var(--green)); border-radius: 16px; padding: 18px; color: #fff; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 18px rgba(22,163,74,.25); cursor: pointer; }
+  .pubcard .t { font-size: 16px; font-weight: 800; }
+  .pubcard .s { font-size: 11px; opacity: .9; margin-top: 4px; }
+  .pubcard .go { background: #fff; color: var(--green); font-size: 13px; font-weight: 800; border-radius: 999px; padding: 9px 18px; }
+  .sec { margin-top: 16px; }
+  .sec .st { font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: baseline; }
+  .sec .st span { font-size: 11px; color: var(--text2); font-weight: 400; }
 
-  /* ---- toast ---- */
-  .toast {
-    position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%) translateY(10px);
-    background: rgba(17,24,39,.92); color: #fff; font-size: 13px; padding: 10px 18px;
-    border-radius: 999px; opacity: 0; transition: all .25s ease; pointer-events: none; z-index: 20; white-space: nowrap;
-  }
+  /* ---- 店铺我的（商家） ---- */
+  .store { background: #fff; border-radius: 18px; padding: 18px; display: flex; gap: 14px; align-items: center; box-shadow: 0 1px 3px rgba(16,24,40,.06); margin-top: 14px; }
+  .store .slogo { width: 58px; height: 58px; border-radius: 14px; background: linear-gradient(135deg, #d1fae5, #a7f3d0); display: flex; align-items: center; justify-content: center; font-size: 28px; }
+  .store .verified { font-size: 10px; color: var(--blue); background: #dbeafe; border-radius: 6px; padding: 2px 6px; font-weight: 700; margin-left: 6px; }
+
+  .toast { position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%) translateY(10px); background: rgba(17,24,39,.92); color: #fff; font-size: 13px; padding: 10px 18px; border-radius: 999px; opacity: 0; transition: all .25s ease; pointer-events: none; z-index: 20; white-space: nowrap; }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+  .mask { position: absolute; inset: 0; background: rgba(17,24,39,.45); z-index: 30; display: none; align-items: flex-end; }
+  .mask.show { display: flex; }
+  .sheet { background: #fff; border-radius: 22px 22px 0 0; padding: 20px 18px 26px; width: 100%; animation: up .22s ease; }
+  @keyframes up { from { transform: translateY(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+  .sheet .sh { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .sheet .sh b { font-size: 16px; }
+  .sheet .sh .x { color: #c0c4cc; font-size: 20px; cursor: pointer; padding: 2px 6px; }
+  .frow { margin-bottom: 12px; }
+  .frow label { font-size: 12px; color: var(--text2); display: block; margin-bottom: 6px; }
+  .frow input, .frow textarea { width: 100%; border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px 12px; font-size: 14px; font-family: inherit; outline: none; }
+  .frow textarea { height: 64px; resize: none; }
+
   .hint { margin-top: 18px; font-size: 12px; color: var(--text2); text-align: center; line-height: 1.8; }
-  .hint a { color: var(--green); font-weight: 700; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -169,44 +187,33 @@
   <h1>友邻 <span>YouLin</span> · 本地素人互免探店平台</h1>
   <p>商家发免费体验单 → 素人 LBS 到店核验 → 强制合规标注笔记 → 数据回流看板</p>
   <div class="tags">
-    <span class="tag"><b>✓</b> 交互演示（模拟数据）</span>
+    <span class="tag"><b>✓</b> 选择身份登录：达人端 / 商家端</span>
     <span class="tag">FastAPI + React + 微信小程序</span>
     <span class="tag">LBS 三级核验 + 反作弊</span>
     <span class="tag">合规双保险（广告法）</span>
   </div>
 </div>
 
-<div class="phone">
-  <div class="appbar">
-    <div class="logo">友</div>
-    <h2 id="barTitle">友邻</h2>
-    <div class="bell" onclick="toast('2 条新消息：接单成功 · 核验通过')"><i>2</i></div>
-    <div class="uname">阿布</div>
-  </div>
-
-  <div class="page" id="page"></div>
-
-  <div class="tabbar" id="tabbar">
-    <button class="on" data-p="discover"><span class="ico">🧭</span>发现</button>
-    <button data-p="orders"><span class="ico">🧾</span>订单</button>
-    <button data-p="profile"><span class="ico">👤</span>我的</button>
-    <button data-p="merchant"><span class="ico">🏪</span>商家</button>
-  </div>
+<div class="phone" id="phone">
+  <!-- 动态渲染：登录页 / 达人端 / 商家端 -->
   <div class="toast" id="toast"></div>
+  <div class="mask" id="mask"><div class="sheet" id="sheet"></div></div>
 </div>
 
-<p class="hint">
-  本页面为前端交互演示（数据模拟），完整系统含 FastAPI 后端 · LBS 到店核验 · 反作弊 · 合规引擎 · 商家看板。<br/>
-  源码为私有项目，可通过简历附带的演示链接体验。
-</p>
+<p class="hint">本页面为前端交互演示（数据模拟），完整系统含 FastAPI 后端 · LBS 到店核验 · 反作弊 · 合规引擎。</p>
 
 <script>
-/* ---------- 数据 ---------- */
+/* ================= 状态 ================= */
 const GRADS = [
   "linear-gradient(135deg,#d1fae5,#a7f3d0)", "linear-gradient(135deg,#fef3c7,#fde68a)",
   "linear-gradient(135deg,#dbeafe,#bfdbfe)", "linear-gradient(135deg,#fce7f3,#fbcfe8)",
   "linear-gradient(135deg,#ede9fe,#ddd6fe)", "linear-gradient(135deg,#ffedd5,#fed7aa)",
 ];
+let role = null;          // null=登录页 | 'amateur' | 'merchant'
+let loginRole = "amateur";
+let tab = 0;
+let countdown = 0, cdTimer = null;
+
 const ORDERS = [
   { id: 1, name: "半糖时光 · 奶茶", emoji: "🧋", desc: "免费招牌奶茶一杯，好喝推荐 环境不错适合拍照", val: 28, dist: "120m", layer: "南大仙林", grad: 0 },
   { id: 2, name: "老王烧烤 · 撸串", emoji: "🍖", desc: "双人烤串体验装：烤串 12 串 + 凉菜一份 + 酸梅汤", val: 88, dist: "480m", layer: "和园", grad: 1 },
@@ -215,168 +222,372 @@ const ORDERS = [
   { id: 5, name: "甜野烘焙", emoji: "🍰", desc: "新品草莓慕斯免费试吃，出炉时间 14:00-17:00", val: 38, dist: "1.5km", layer: "南大仙林", grad: 4 },
   { id: 6, name: "川香冒菜", emoji: "🍲", desc: "单人冒菜套餐免费体验，微辣中辣自选", val: 32, dist: "2.1km", layer: "和园", grad: 5 },
 ];
-const LAYER_NOTE = "南大仙林";
-let mine = [];           // {order, st: accepted|checked|note|done}
-let doneCount = 0, noteCount = 0;
-const RADIUS = ["1km","3km","5km","10km"];
-let radiusOn = "5km";
+let pool = ORDERS.slice();
+let mine = [];            // 达人：{o, st} st: accepted|checked|note|done
+let myNotes = [
+  { id: 101, name: "山野咖啡 · 手冲体验", sub: "曝光 2,318 · 点赞 156 · 收藏 89", text: "环境安静，豆子风味层次分明，附赠的挂耳包也很惊喜。店员会耐心讲解豆单，适合周末下午来放空。【广告·免费体验】" },
+  { id: 102, name: "甜野烘焙 · 草莓慕斯", sub: "曝光 1,742 · 点赞 98 · 收藏 61", text: "慕斯很轻盈，草莓给得大方，出炉时间去的正好吃到热的。【广告·免费体验】" },
+];
+let mDone = 0, mNote = 0;
 
-/* ---------- 工具 ---------- */
-const $page = document.getElementById("page");
+/* 商家：在售单 + 进行中订单 */
+let listings = [
+  { id: 21, name: "双人下午茶套餐", val: 96, got: 7, emoji: "🍰" },
+  { id: 22, name: "招牌奶茶买一赠一体验", val: 28, got: 12, emoji: "🧋" },
+  { id: 23, name: "深夜烤串双人份", val: 88, got: 3, emoji: "🍖" },
+];
+let mOrders = [
+  { id: 31, o: { emoji: "🍰", name: "双人下午茶套餐", val: 96 }, who: "阿布", st: "accepted" },
+  { id: 32, o: { emoji: "🧋", name: "招牌奶茶体验", val: 28 }, who: "小鹿", st: "checked" },
+  { id: 33, o: { emoji: "🍖", name: "深夜烤串双人份", val: 88 }, who: "大乔", st: "note" },
+  { id: 34, o: { emoji: "🧋", name: "招牌奶茶体验", val: 28 }, who: "老陈", st: "done" },
+];
+const mBars = [3, 5, 4, 7, 6, 9, 8];
+let mStat = { listed: 3, redeemToday: 5, notePending: 1, exposure: 12400 };
+
+/* ================= 工具 ================= */
+const $phone = document.getElementById("phone");
 function toast(msg) {
   const t = document.getElementById("toast");
   t.textContent = msg; t.classList.add("show");
   clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2200);
 }
-function chip(label, on, fn) {
-  return `<span class="chip ${on ? "on" : ""}" onclick="${fn}">${label}</span>`;
-}
-function metaChip(l) {
-  const map = { "南大仙林": "🎓 南大仙林", "和园": "🏡 和园" };
-  return `<span class="meta">${map[l] || l}</span>`;
+function closeSheet() { document.getElementById("mask").classList.remove("show"); }
+function openSheet(html) {
+  document.getElementById("sheet").innerHTML = html;
+  document.getElementById("mask").classList.add("show");
 }
 
-/* ---------- 发现 ---------- */
+/* ================= 登录页 ================= */
+function renderLogin() {
+  $phone.innerHTML = `
+  <div class="login">
+    <div class="hero">
+      <div class="biglogo">友</div>
+      <h3>友邻</h3>
+      <p>邻里之间，发现好店 · 免费探店体验</p>
+    </div>
+    <div class="seg">
+      <button class="${loginRole === "amateur" ? "on" : ""}" onclick="setLoginRole('amateur')">达人体验</button>
+      <button class="${loginRole === "merchant" ? "on" : ""}" onclick="setLoginRole('merchant')">商家合作</button>
+    </div>
+    <div class="field"><input value="138 **** 6666" readonly /><button class="send" onclick="sendCode()" id="sendBtn">获取验证码</button></div>
+    <div class="field"><input placeholder="请输入验证码（演示任意输入）" id="codeInput" /></div>
+    <button class="btn-login" onclick="doLogin()">${loginRole === "amateur" ? "登录 / 注册" : "登录商家后台"}</button>
+    <div class="or"><span>其他方式</span></div>
+    <button class="btn-wechat" onclick="wechatLogin()">微信一键登录</button>
+    <div class="role-note">${loginRole === "amateur"
+      ? "🧭 达人端：发现附近免费体验 → 到店核验 → 发布合规笔记赚信用"
+      : "🏪 商家端：发布体验单 → 双精准匹配达人 → 核销看数据"}</div>
+    <div class="agree">登录即代表同意 <b>《用户协议》</b> 与 <b>《隐私政策》</b><br/>演示页面 · 数据为模拟</div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <div class="mask" id="mask" onclick="closeSheet()"><div class="sheet" id="sheet" onclick="event.stopPropagation()"></div></div>`;
+}
+function setLoginRole(r) { loginRole = r; renderLogin(); }
+function sendCode() {
+  if (countdown > 0) return;
+  countdown = 60;
+  toast("验证码已发送（演示：任意输入即可）");
+  cdTimer = setInterval(() => {
+    countdown--;
+    const b = document.getElementById("sendBtn");
+    if (!b) { clearInterval(cdTimer); return; }
+    if (countdown <= 0) { clearInterval(cdTimer); b.textContent = "获取验证码"; b.disabled = false; }
+    else { b.textContent = countdown + "s"; b.disabled = true; }
+  }, 1000);
+}
+function doLogin() {
+  const code = (document.getElementById("codeInput") || {}).value || "";
+  if (!code.trim()) { toast("请输入验证码（任意数字）"); return; }
+  enterApp(loginRole);
+}
+function wechatLogin() { enterApp(loginRole, true); }
+function enterApp(r, wechat) {
+  role = r; tab = 0;
+  toast(wechat ? "微信登录成功" : (r === "amateur" ? "欢迎回来，阿布" : "商家后台已登录"));
+  renderApp();
+}
+function logout() { role = null; mine = []; pool = ORDERS.slice(); renderLogin(); }
+function switchRole() { loginRole = role === "amateur" ? "merchant" : "amateur"; role = null; renderLogin(); toast("已切换身份，请重新登录"); }
+
+/* ================= App 外壳 ================= */
+function renderApp() {
+  const amateur = role === "amateur";
+  const tabs = amateur
+    ? [["🧭", "发现"], ["🧾", "订单"], ["👤", "我的"]]
+    : [["🏪", "工作台"], ["🧾", "订单"], ["👤", "我的"]];
+  const titles = amateur ? ["友邻", "我的订单", "我的"] : ["友邻 · 商家", "订单管理", "店铺与设置"];
+  $phone.innerHTML = `
+    <div class="appbar">
+      <div class="logo">友</div>
+      <h2 id="barTitle">${titles[tab]}</h2>
+      <div class="bell" onclick="toast('${amateur ? "2 条新消息：接单成功 · 核验通过" : "1 条新消息：新达人接单"}')"><i>${amateur ? 2 : 1}</i></div>
+      <div class="uname">${amateur ? "阿布" : "半糖时光"}</div>
+    </div>
+    <div class="page" id="page"></div>
+    <div class="tabbar" id="tabbar">
+      ${tabs.map((t, i) => `<button class="${i === tab ? "on" : ""}" data-i="${i}" onclick="goTab(${i})"><span class="ico">${t[0]}</span>${t[1]}</button>`).join("")}
+    </div>
+    <div class="toast" id="toast"></div>
+    <div class="mask" id="mask" onclick="closeSheet()"><div class="sheet" id="sheet" onclick="event.stopPropagation()"></div></div>`;
+  (amateur ? [renderDiscover, renderOrders, renderAmateurProfile] : [renderWorkbench, renderMerchantOrders, renderMerchantProfile])[tab]();
+}
+function goTab(i) {
+  tab = i;
+  const titles = role === "amateur" ? ["友邻", "我的订单", "我的"] : ["友邻 · 商家", "订单管理", "店铺与设置"];
+  document.querySelectorAll(".tabbar button").forEach(b => b.classList.toggle("on", +b.dataset.i === i));
+  document.getElementById("barTitle").textContent = titles[i];
+  (role === "amateur" ? [renderDiscover, renderOrders, renderAmateurProfile] : [renderWorkbench, renderMerchantOrders, renderMerchantProfile])[i]();
+}
+
+/* ================= 达人 · 发现 ================= */
+let radiusOn = "5km";
 function renderDiscover() {
-  $page.innerHTML = `
+  document.getElementById("page").innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:baseline;">
-      <div class="h">附近免费体验</div><div class="sub">${ORDERS.length} 个可领</div>
+      <div class="h">附近免费体验</div><div class="sub">${pool.length} 个可领</div>
     </div>
     <div class="chips">
-      ${RADIUS.map(r => chip(r, r === radiusOn, `setRadius('${r}')`)).join("")}
+      ${["1km","3km","5km","10km"].map(r => `<span class="chip ${r === radiusOn ? "on" : ""}" onclick="setRadius('${r}')">${r}</span>`).join("")}
       <span class="chip sep"></span>
-      ${chip("全部圈层", true, "")}
+      <span class="chip on">全部圈层</span>
     </div>
-    <div class="waterfall" id="wf"></div>`;
-  renderWaterfall();
+    ${pool.length ? `<div class="waterfall">${pool.map((o, i) => `
+      <div class="card" id="card-${o.id}">
+        <div class="cover" style="height:${120 + (i % 3) * 24}px;background:${GRADS[o.grad]}">
+          <span class="emoji">${o.emoji}</span>
+          <span class="badge-v">免单 ¥${o.val}</span>
+          <span class="badge-d">📍 ${o.dist}</span>
+        </div>
+        <div class="cbody">
+          <div class="cname">${o.name}</div>
+          <div class="cdesc">${o.desc}</div>
+          <div class="metas"><span class="meta">🎓 ${o.layer}</span><span class="meta">🕐 今日 10:00-20:00</span></div>
+          <button class="btn-accept" onclick="accept(event,${o.id})">免费领取</button>
+        </div>
+      </div>`).join("")}</div>`
+    : `<div style="text-align:center;padding:120px 0;color:var(--text2)"><div style="font-size:44px">🍽️</div><p style="margin-top:10px">附近暂无可领体验单</p></div>`}`;
 }
 function setRadius(r) { radiusOn = r; toast(`已切换到 ${r} 范围`); renderDiscover(); }
-function renderWaterfall() {
-  document.getElementById("wf").innerHTML = ORDERS.map((o, i) => `
-    <div class="card" id="card-${o.id}">
-      <div class="cover" style="height:${120 + (i % 3) * 24}px;background:${o.grad != null ? GRADS[o.grad] : GRADS[0]}">
-        <span class="emoji">${o.emoji}</span>
-        <span class="badge-v">免单 ¥${o.val}</span>
-        <span class="badge-d">📍 ${o.dist}</span>
-      </div>
-      <div class="cbody">
-        <div class="cname">${o.name}</div>
-        <div class="cdesc">${o.desc}</div>
-        <div class="metas">${metaChip(o.layer)}<span class="meta">🕐 今日 10:00-20:00</span></div>
-        <button class="btn-accept" onclick="accept(event,${o.id})">免费领取</button>
-      </div>
-    </div>`).join("");
-}
-let current = "discover";
 function accept(e, id) {
   e.stopPropagation();
-  const idx = ORDERS.findIndex(o => o.id === id);
-  const [o] = ORDERS.splice(idx, 1);
+  const idx = pool.findIndex(o => o.id === id);
+  const [o] = pool.splice(idx, 1);
   mine.unshift({ o, st: "accepted" });
   const el = document.getElementById("card-" + id);
-  if (el) { el.classList.add("gone"); setTimeout(() => { if (current === "discover") renderDiscover(); }, 260); }
+  if (el) { el.classList.add("gone"); setTimeout(() => { if (tab === 0 && role === "amateur") renderDiscover(); }, 260); }
   toast("领取成功！记得按时到店核验");
 }
 
-/* ---------- 订单 ---------- */
+/* ================= 达人 · 订单 ================= */
 const ST_TEXT = { accepted: ["已接单", "st-accepted"], checked: ["已到店核验", "st-checked"], note: ["笔记已交付", "st-note"], done: ["已完成", "st-done"] };
 function renderOrders() {
-  const body = mine.length ? `
-    <div class="ocards">${mine.map((m, i) => {
-      const [txt, cls] = ST_TEXT[m.st];
-      let act = "";
-      if (m.st === "accepted") act = `<button class="btn-act" id="act-${i}" onclick="checkin(${i})">📍 到店核验</button>`;
-      if (m.st === "checked") act = `<button class="btn-act" onclick="publish(${i})">✍️ 写笔记</button>`;
-      if (m.st === "note") act = `<button class="btn-act ghost" onclick="toast('等待对方互评后完成')">⏳ 互评中</button>`;
-      if (m.st === "done") act = `<span class="sub">✅ 已互评完成</span>`;
-      return `
-        <div class="ocard">
-          <div class="otop"><span class="oname">${m.o.emoji} ${m.o.name}</span><span class="ost ${cls}">${txt}</span></div>
-          <div class="odesc">${m.o.desc}</div>
-          <div class="obottom"><span class="oval">¥${m.o.val}</span>${act}</div>
-        </div>`;
-    }).join("")}</div>`
-    : `<div style="text-align:center;padding:120px 0;color:var(--text2)">
-         <div style="font-size:44px">🧾</div><p style="margin-top:10px">还没有订单<br/>去「发现」领取免费体验单</p></div>`;
-  $page.innerHTML = `<div class="h">我的订单</div>${body}`;
+  const page = document.getElementById("page");
+  if (!mine.length) {
+    page.innerHTML = `<div class="h">我的订单</div>
+      <div style="text-align:center;padding:110px 0;color:var(--text2)"><div style="font-size:44px">🧾</div><p style="margin-top:10px">还没有订单<br/>去「发现」领取免费体验单</p></div>`;
+    return;
+  }
+  page.innerHTML = `<div class="h">我的订单</div><div class="ocards">${mine.map((m, i) => {
+    const [txt, cls] = ST_TEXT[m.st];
+    let act = "";
+    if (m.st === "accepted") act = `<button class="btn-act" id="act-${i}" onclick="checkin(${i})">📍 到店核验</button>`;
+    if (m.st === "checked") act = `<button class="btn-act" onclick="publish(${i})">✍️ 写笔记</button>`;
+    if (m.st === "note") act = `<button class="btn-act ghost" onclick="toast('等待商家互评后完成')">⏳ 互评中</button>`;
+    if (m.st === "done") act = `<span class="sub">✅ 已互评完成</span>`;
+    return `
+      <div class="ocard">
+        <div class="otop"><span class="oname">${m.o.emoji} ${m.o.name}</span><span class="ost ${cls}">${txt}</span></div>
+        <div class="odesc">${m.o.desc}</div>
+        <div class="obottom"><span class="oval">¥${m.o.val}</span>${act}</div>
+      </div>`;
+  }).join("")}</div>`;
 }
 function checkin(i) {
   const btn = document.getElementById("act-" + i);
   btn.disabled = true; btn.textContent = "定位核验中…";
-  setTimeout(() => {
-    mine[i].st = "checked"; doneCount++;
-    renderOrders();
-    toast("LBS 核验通过：距门店 87m（Tier0 强通过）");
-  }, 1200);
+  setTimeout(() => { mine[i].st = "checked"; mDone++; renderOrders(); toast("LBS 核验通过：距门店 87m（Tier0 强通过）"); }, 1200);
 }
 function publish(i) {
-  mine[i].st = "note"; noteCount++;
+  const m = mine[i];
+  mine[i].st = "note"; mNote++;
+  myNotes.unshift({ id: Date.now(), name: m.o.name + " · 免费体验", sub: "曝光 326 · 刚刚发布", text: "真实体验分享……【广告·免费体验】" });
   renderOrders();
-  toast('笔记已发布，自动标注「广告·免费体验」');
+  toast("笔记已发布，已自动标注「广告·免费体验」");
 }
 
-/* ---------- 我的 ---------- */
-function renderProfile() {
-  $page.innerHTML = `
-    <div class="h" style="margin-top:2px">我的</div>
+/* ================= 达人 · 我的 ================= */
+function renderAmateurProfile() {
+  document.getElementById("page").innerHTML = `
+    <div class="h">我的</div>
     <div class="profile">
       <div class="avatar">阿</div>
       <div style="font-weight:800;font-size:17px">阿布 <span class="sub">UL3F8KQ2M1</span></div>
-      <div class="sub" style="margin-top:4px">认证素人 · 🎓 南大仙林</div>
+      <div class="sub" style="margin-top:4px">认证素人 · 🎓 南大仙林 · 入驻 128 天</div>
       <div class="ring">🛡 信用分 98 · 金牌</div>
     </div>
     <div class="stats">
-      <div class="stat"><b>${doneCount}</b><span>完成探店</span></div>
-      <div class="stat"><b>${noteCount}</b><span>合规笔记</span></div>
+      <div class="stat"><b>${mDone}</b><span>完成探店</span></div>
+      <div class="stat"><b>${mNote + myNotes.length}</b><span>合规笔记</span></div>
       <div class="stat"><b>4.9</b><span>邻里评分</span></div>
       <div class="stat"><b>12</b><span>信用足迹</span></div>
     </div>
-    <div class="profile" style="text-align:left;padding:16px">
-      <div style="font-weight:700;font-size:14px;margin-bottom:8px">🔐 平台保障</div>
-      <div class="sub" style="line-height:1.9">· LBS 三级到店核验（Tier0/1/2）+ 设备指纹反作弊<br/>· 笔记强制「广告·免费体验」标注（后端不可篡改）<br/>· 双向互评 + 信用分体系，违约留档</div>
+    <div class="notes">
+      <div class="nt">我的合规笔记</div>
+      ${myNotes.slice(0, 2).map(n => `
+        <div class="note" onclick="viewNote(${n.id})">
+          <div class="nrow"><span class="nname">${n.name}</span><span class="comp">广告·免费体验</span></div>
+          <div class="nsub">${n.sub}</div>
+        </div>`).join("")}
+    </div>
+    <div class="menu">
+      <div class="mi" onclick="toast('收货与联系信息（演示）')"><span class="l">📮 我的资料</span><span class="arr">›</span></div>
+      <div class="mi" onclick="toast('消息中心：2 条未读（演示）')"><span class="l">🔔 消息中心</span><span class="arr">›</span></div>
+      <div class="mi" onclick="toast('广告法合规说明：所有互免笔记均强制标注')"><span class="l">🛡 合规说明</span><span class="arr">›</span></div>
+      <div class="mi" onclick="switchRole()"><span class="l">🏪 切换为商家身份</span><span class="arr">›</span></div>
+      <div class="mi" onclick="logout()"><span class="l" style="color:var(--red)">⏏ 退出登录</span><span class="arr">›</span></div>
     </div>`;
 }
+function viewNote(id) {
+  const n = myNotes.find(x => x.id === id) || myNotes[0];
+  openSheet(`
+    <div class="sh"><b>${n.name}</b><span class="x" onclick="closeSheet()">✕</span></div>
+    <div class="note" style="margin:0">
+      <div class="nrow"><span class="nsub">合规标注</span><span class="comp">广告·免费体验</span></div>
+    </div>
+    <p style="font-size:13px;line-height:1.8;margin:12px 2px;color:var(--text)">${n.text}</p>
+    <div class="nsub">${n.sub}</div>`);
+}
 
-/* ---------- 商家 ---------- */
-function renderMerchant() {
-  const bars = [3, 5, 4, 7, 6, 9, 8];
-  $page.innerHTML = `
-    <div class="h">商家看板 <span class="sub">冒烟奶茶店</span></div>
+/* ================= 商家 · 工作台 ================= */
+function renderWorkbench() {
+  document.getElementById("page").innerHTML = `
+    <div class="hi">
+      <div class="h">下午好，半糖时光 🍰</div>
+      <div class="sub">今日数据一览 · 数据每 10 分钟更新</div>
+    </div>
     <div class="metrics">
-      <div class="metric"><b>42</b><span>累计发单</span><em>本周 +8</em></div>
-      <div class="metric"><b>31</b><span>到店核销</span><em>核销率 74%</em></div>
-      <div class="metric"><b>27</b><span>合规笔记交付</span><em>交付率 87%</em></div>
-      <div class="metric"><b>156</b><span>双精准候选命中</span><em>匹配精度 92%</em></div>
+      <div class="metric"><b>${mStat.listed}</b><span>在售体验单</span><em>正常推单</em></div>
+      <div class="metric"><b>${mStat.redeemToday}</b><span>今日核销</span><em>核销率 74%</em></div>
+      <div class="metric"><b>${mStat.notePending}</b><span>待审核笔记</span><em>今日 +1</em></div>
+      <div class="metric"><b>${mStat.exposure.toLocaleString()}</b><span>笔记总曝光</span><em>↑ 18%</em></div>
+    </div>
+    <div class="pubcard" onclick="openPublish()">
+      <div><div class="t">发布免费体验单</div><div class="s">双精准匹配附近达人 · LBS 到店核验 · 合规笔记回流</div></div>
+      <div class="go">立即发单</div>
     </div>
     <div class="chart">
-      <div style="font-weight:700;font-size:13px">近 7 日发单量</div>
-      <div class="bars">${bars.map((b, i) => `<div class="bar" style="height:${b * 10}px"><span>周${"一二三四五六日"[i]}</span></div>`).join("")}</div>
-      <div style="height:18px"></div>
+      <div class="ct">近 7 日核销量</div>
+      <div class="bars">${mBars.map((b, i) => `<div class="bar" style="height:${b * 9}px"><span>周${"一二三四五六日"[i]}</span></div>`).join("")}</div>
+      <div style="height:16px"></div>
     </div>
-    <div class="chart">
-      <div style="font-weight:700;font-size:13px">运营亮点</div>
-      <div class="sub" style="margin-top:8px;line-height:1.9">
-        · 笔记回流曝光 <b style="color:var(--orange)">12,400+</b>，进店转化 <b style="color:var(--green)">↑18%</b><br/>
-        · 低质订单自动出清 + 异常发单密度检测已开启<br/>
-        · 每日发单上限 5 单（平台风控）
+    <div class="sec">
+      <div class="st">在售体验单 <span>${listings.length} 个 · 点击管理下架</span></div>
+      <div class="ocards" style="margin-top:0">${listings.map((l, i) => `
+        <div class="ocard" style="display:flex;align-items:center;gap:12px">
+          <div style="font-size:26px">${l.emoji}</div>
+          <div style="flex:1">
+            <div class="oname" style="font-size:14px">${l.name}</div>
+            <div class="odesc" style="margin-top:2px">已领取 ${l.got} 人 · 权益 ¥${l.val}</div>
+          </div>
+          <button class="btn-act ghost" onclick="offline(${i})">下架</button>
+        </div>`).join("")}</div>
+    </div>`;
+}
+function offline(i) {
+  const [l] = listings.splice(i, 1);
+  mStat.listed = listings.length;
+  renderWorkbench();
+  toast(`「${l.name}」已下架`);
+}
+function openPublish() {
+  openSheet(`
+    <div class="sh"><b>发布免费体验单</b><span class="x" onclick="closeSheet()">✕</span></div>
+    <div class="frow"><label>体验内容</label><input id="p-name" placeholder="如：双人下午茶套餐" /></div>
+    <div class="frow"><label>权益价值（元）</label><input id="p-val" type="number" placeholder="如：96" /></div>
+    <div class="frow"><label>补充说明</label><textarea id="p-desc" placeholder="到店时间、使用规则等"></textarea></div>
+    <button class="btn-login" style="height:46px;letter-spacing:2px" onclick="doPublish()">发布并推送给附近达人</button>`);
+}
+function doPublish() {
+  const name = document.getElementById("p-name").value.trim();
+  const val = +document.getElementById("p-val").value || 0;
+  if (!name || !val) { toast("请填写内容与权益价值"); return; }
+  listings.unshift({ id: Date.now(), name, val, got: 0, emoji: "🎁" });
+  mStat.listed = listings.length;
+  closeSheet(); renderWorkbench();
+  toast(`发布成功：已向围栏内 ${2 + Math.floor(Math.random() * 5)} 位双精准达人推单`);
+}
+
+/* ================= 商家 · 订单 ================= */
+const M_ST = { accepted: ["达人已接单", "st-accepted"], checked: ["已到店 · 待核销", "st-checked"], note: ["笔记已交付", "st-note"], done: ["已完成", "st-done"] };
+function renderMerchantOrders() {
+  document.getElementById("page").innerHTML = `
+    <div class="h">订单管理 <span class="sub" style="font-weight:400">核销达人到店权益 · 验收合规笔记</span></div>
+    <div class="ocards">${mOrders.map((m, i) => {
+      const [txt, cls] = M_ST[m.st];
+      let act = "";
+      if (m.st === "checked") act = `<button class="btn-act" onclick="redeem(${i})">✅ 核销权益</button>`;
+      if (m.st === "note") act = `<button class="btn-act" onclick="viewMNote(${i})">📖 验收笔记</button>`;
+      if (m.st === "done") act = `<span class="sub">✅ 已完成</span>`;
+      if (m.st === "accepted") act = `<span class="sub">等待到店…</span>`;
+      return `
+      <div class="ocard">
+        <div class="otop"><span class="oname">${m.o.emoji} ${m.o.name}</span><span class="ost ${cls}">${txt}</span></div>
+        <div class="who">接单达人：<b>${m.who}</b> · 信用分 96 · 金牌</div>
+        <div class="obottom"><span class="oval">¥${m.o.val}</span>${act}</div>
+      </div>`;
+    }).join("")}</div>`;
+}
+function redeem(i) {
+  mOrders[i].st = "done";
+  mStat.redeemToday++;
+  renderMerchantOrders();
+  toast("核销成功：6 位核销码已验证（演示）");
+}
+function viewMNote(i) {
+  const m = mOrders[i];
+  openSheet(`
+    <div class="sh"><b>达人笔记验收 · ${m.who}</b><span class="x" onclick="closeSheet()">✕</span></div>
+    <div class="note" style="margin:0">
+      <div class="nrow"><span class="nname">${m.o.name} · 免费体验</span><span class="comp">广告·免费体验</span></div>
+      <div class="nsub">曝光 1,208 · 点赞 87 · 平台质检 82 分</div>
+    </div>
+    <p style="font-size:13px;line-height:1.8;margin:12px 2px">真实体验内容…… 发布于小红书，含门店定位与合规标注。</p>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="btn-act ghost" style="flex:1" onclick="closeSheet();mOrders[${i}].st='done';renderMerchantOrders();toast('已验收，订单完成')">通过验收</button>
+      <button class="btn-act" style="flex:1;background:#fff;color:var(--red);border:1px solid var(--red)" onclick="closeSheet();toast('已提交平台人工复核')">质量申诉</button>
+    </div>`);
+}
+
+/* ================= 商家 · 我的 ================= */
+function renderMerchantProfile() {
+  document.getElementById("page").innerHTML = `
+    <div class="h">店铺与设置</div>
+    <div class="store">
+      <div class="slogo">🍰</div>
+      <div style="flex:1">
+        <div style="font-weight:800;font-size:16px">半糖时光（仙林店）<span class="verified">已认证</span></div>
+        <div class="sub" style="margin-top:4px">奶茶烘焙 · 📍 南大仙林商圈 · 信用分 95</div>
       </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>42</b><span>累计发单</span></div>
+      <div class="stat"><b>31</b><span>到店核销</span></div>
+      <div class="stat"><b>27</b><span>笔记交付</span></div>
+      <div class="stat"><b>4.8</b><span>达人评分</span></div>
+    </div>
+    <div class="menu">
+      <div class="mi" onclick="toast('门店信息与营业时间（演示）')"><span class="l">🏪 门店管理</span><span class="arr">›</span></div>
+      <div class="mi" onclick="toast('扫码核销达人核销码（演示）')"><span class="l">📷 扫码核销</span><span class="arr">›</span></div>
+      <div class="mi" onclick="toast('达人对门店的历史互评（演示）')"><span class="l">⭐ 评价管理</span><span class="arr">›</span></div>
+      <div class="mi" onclick="switchRole()"><span class="l">🧭 切换为达人身份</span><span class="arr">›</span></div>
+      <div class="mi" onclick="logout()"><span class="l" style="color:var(--red)">⏏ 退出登录</span><span class="arr">›</span></div>
     </div>`;
 }
 
-/* ---------- 路由 ---------- */
-const TITLES = { discover: "友邻", orders: "我的订单", profile: "我的", merchant: "商家工作台" };
-const RENDER = { discover: renderDiscover, orders: renderOrders, profile: renderProfile, merchant: renderMerchant };
-function go(p, btn) {
-  current = p;
-  document.querySelectorAll(".tabbar button").forEach(b => b.classList.remove("on"));
-  btn.classList.add("on");
-  document.getElementById("barTitle").textContent = TITLES[p];
-  RENDER[p]();
-}
-document.querySelectorAll(".tabbar button").forEach(b =>
-  b.addEventListener("click", () => go(b.dataset.p, b))
-);
-renderDiscover();
+/* ================= 启动 ================= */
+renderLogin();
 </script>
 </body>
 </html>
